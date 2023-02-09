@@ -1,0 +1,8 @@
+package com.mysite.sbb2;
+
+
+@SpringBootTest
+class Sbb2ApplicationTests {
+
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;sbb-1/src/main/java/com.mysite.sbb1&apos;&#x0D;&#x0A;- Original project: &apos;sbb&apos;&#x0D;&#x0A;- Destination element: &apos;sbb-1/src/main/java/com.mysite.sbb1&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.mysite.sbb.HelloController.java&#x0D;&#x0A;     com.mysite.sbb.TestController.java" description="Copy compilation units" destination="=sbb-1/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.mysite.sbb1" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mysite.sbb{HelloController.java" element2="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mysite.sbb{TestController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1675666321310" units="2" version="1.0"/>
+</session>

@@ -1,0 +1,26 @@
+package com.mysite.sbb;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
+
+	List<Question> findBySubjectLike(String string);
+
+	List<Question> findByContentLike(String string);
+
+
+	List<Question> findBySubjectLikeOrContentLike(String string, String string2);
+
+	List<Question> findBySubjectLikeOrderByCreateDateAsc(String string);
+
+	List<Question> findBySubjectLikeOrderByCreateDateDesc(String string);
+
+	List<Question> findAllByOrderByCreateDateAsc();
+	
+	List<Question> findAllByOrderByCreateDateDesc();
+
+
+
+}

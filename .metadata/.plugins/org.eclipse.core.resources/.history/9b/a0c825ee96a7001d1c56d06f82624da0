@@ -1,0 +1,11 @@
+package com.mysite.sbb2;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import lombok.Data;
+
+public interface UsersRepository extends JpaRepository<Users, Integer> {
+
+	
+	Users findByregdateAsc(Data regdate);
+}

@@ -1,0 +1,14 @@
+package com.mysite.sbb2;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.mysite.sbb2.UsersRepository;
+
+@SpringBootTest
+class Sbb2ApplicationTests {
+
+	
+	@Autowired
+	private UsersRepository usersRepository;
+}

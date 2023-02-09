@@ -1,0 +1,89 @@
+package com.mysite.sbb2;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.mysite.sbb2.UsersRepository;
+
+@SpringBootTest
+class Sbb2ApplicationTests {
+
+	
+	@Autowired
+	private UsersRepository usersRepository;
+	
+	
+	
+
+	@Test
+	void testJpa2() {
+		
+		Optional<Users> oq = this.usersRepository.findByIdx(3); 
+		assertTrue(oq.isPresent());
+		Users u3 = oq.get();
+		u3.setName("김길동"); 
+		this.usersRepository.save(u3);
+	}
+//		List<Users> all = this.usersRepository.findAllByOrderByregdateDesc();
+//		for (int i = 0 ; i < all.size(); i++ ) {
+//			Users us =all.get(i);
+//		}
+		
+	
+	/*
+	 * 	@Test
+	void testJpa() {
+	Users u1 = new Users();
+	u1.setName("홍길동");
+	u1.setPass("1234");
+	u1.setEmail("aaa@gmail.com");
+	u1.setRegdate(LocalDateTime.now());
+	u1.setCnt(0);
+
+	this.usersRepository.save(u1); 
+	
+	Users u2 = new Users();
+	u2.setPass("1234");
+	u2.setName("홍길동");
+	u2.setEmail("aaa@gmail.com");
+	u2.setRegdate(LocalDateTime.now());
+	u2.setCnt(0);
+
+	this.usersRepository.save(u2); 
+	
+	Users u3 = new Users();
+	u3.setName("홍길동");
+	u3.setPass("1234");
+	u3.setEmail("aaa@gmail.com");
+	u3.setRegdate(LocalDateTime.now());
+	u3.setCnt(0);
+
+	this.usersRepository.save(u3); 
+	
+	Users u4 = new Users();
+	u4.setName("홍길동");
+	u4.setPass("1234");
+	u4.setEmail("aaa@gmail.com");
+	u4.setRegdate(LocalDateTime.now());
+	u4.setCnt(0);
+
+	this.usersRepository.save(u4); 
+	
+	Users u5 = new Users();
+	u5.setName("홍길동");
+	u5.setPass("1234");
+	u5.setEmail("aaa@gmail.com");
+	u5.setRegdate(LocalDateTime.now());
+	u5.setCnt(0);
+
+	this.usersRepository.save(u5); 
+	
+	} */
+}
