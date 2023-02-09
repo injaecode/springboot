@@ -814,3 +814,12 @@
 2023-02-09 10:41:05,921 [Worker-77: https://ftp.jaist.ac.jp/pub/eclipse/releases/2022-12/202212071000/features/org.eclipse.wst.xml_userdoc.feature_3.18.0.v202004271556.jar] INFO  o.a.h.c.h.i.c.HttpRequestRetryExec - Recoverable I/O exception (org.apache.hc.core5.http.NoHttpResponseException) caught when processing request to {s}->https://ftp.jaist.ac.jp:443
 2023-02-09 10:42:35,446 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2023-02-09 11:15:55,313 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-02-09 14:41:08,860 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-02-09 14:41:08,872 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-09 14:41:08,875 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hi\Documents\workspace-spring-tool-suite-4-4.17.2.RELEASE\sbb-0\src\test\resources
+2023-02-09 14:42:06,847 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-02-09 14:42:06,849 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-09 14:42:06,851 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hi\Documents\workspace-spring-tool-suite-4-4.17.2.RELEASE\sbb-0\src\test\resources
+2023-02-09 17:02:00,889 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-02-09 17:02:00,892 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2023-02-09 17:02:00,893 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\hi\Documents\workspace-spring-tool-suite-4-4.17.2.RELEASE\sbb-0\src\test\resources

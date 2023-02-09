@@ -1,0 +1,32 @@
+package com.mysite.sbb2;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
+@Controller
+public class UsersController {
+
+	
+		@Autowired
+		private final UsersRepository usersrepository;
+		
+		@GetMapping("/users/list")
+		@PostMapping("/users/list")
+		public String list(Model model) {
+			
+			List<Users> usersList= this.usersrepository.findAll();
+			
+			model.addAttribute("usersList", usersList);
+			
+			return "Users_list";
+		}
+}
