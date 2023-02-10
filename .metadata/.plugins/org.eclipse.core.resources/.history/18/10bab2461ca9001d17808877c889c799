@@ -1,0 +1,19 @@
+package com.mysite.sbb2;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class UsersService {
+	private final UsersRepository usersrepository;
+	
+	public List<Users> getList() {
+		// TODO Auto-generated method stub
+		return this.usersrepository.findAll();
+	}
+
+}

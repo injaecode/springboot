@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 등록</title>
+</head>
+<body>
+	<h3>회원 등록</h3>
+	<table></table>
+	
+	<form th:action = "@{|/users/list|}|" method = "post">
+	<table>
+	<tr>
+		<td>이름</td>
+		<td><textarea  id="name" name="name"></textarea></td>
+	</tr>
+	</table>
+	<input type="submit" value="답변등록">
+ 
+	</form>
+</body>
+</html>

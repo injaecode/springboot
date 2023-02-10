@@ -1,0 +1,41 @@
+package com.mysite.sbb2;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class UsersService {
+	private final UsersRepository usersrepository;
+	
+	public List<Users> getList() {
+		// TODO Auto-generated method stub
+		return this.usersrepository.findAll();
+	}
+
+	public Users getUser(Integer id) {
+		Optional<Users> op = this.usersrepository.findById(id);
+		if(op.isPresent()) {
+			return op.get();
+		}else {
+		throw new DataNotFoundException("파일 없음.");
+		}
+	}
+
+	public void insertData(String name, String pass, String email) {
+		Users users = new Users();
+		users.setName(name);
+		users.setPass(pass);
+		users.setEmail(email);
+		
+		this.usersrepository.save(users);
+		
+	}
+
+
+	
+}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,6 +37,7 @@ public class QuestionController {
 	 */
 	@Autowired
 	private final QuestionRepository questionrepository;
+	private final QuestionService questionService;
 	
 	
 	@GetMapping("/question/list") 	//localhost:9090/question/list
@@ -45,12 +47,24 @@ public class QuestionController {
 		//1. 클라이언트 요청정보 : localhost:9090/question/list
 		//2. 비즈니스 로직을 처리 
 		List<Question> questionList=
-				this.questionrepository.findAll();
+				//this.questionrepository.findAll();
+				this.questionService.getList();
 		//3. 뷰 페이지로 전송
 			//Model : 뷰페이지로 서버의 데이터를 담아서 전송 객체(session, application)
 		model.addAttribute("questionList", questionList);
 		
 		return "Question_list";
 		
+	}
+	
+	//상세페이지를 처리하는 메소드 : /question/detail/1
+	@GetMapping(value="/question/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		//서비스 클래스의 메소드 호출 :  '상세페이지 출력'
+		Question q=
+				this.questionService.getQuestion(id);
+				// Model 객체에 담아서 클라이언트에게 전송
+				model.addAttribute("question", q);
+		return "Question_detail"; //template 내 question_detail.html 파일로 이동
 	}
 }

@@ -9,21 +9,21 @@
 	<hr>
 	<table>
 		<tr>
-			<th>제목</th><th>내용</th>
+			<th>제목</th><th>작성일자</th>
 		</tr>
-		
-		<!-- 타임리프(Thymeleaf)로 루프를 돌려서 출력 -->
-		<!-- <tr th:each = "question : ${questionList}">
-			<td th:text= "${question.subject}"></td>
-			<td th:text= "${question.content}"></td>
+				<!-- 타임리프(Thymeleaf)로 루프를 돌려서 출력 -->
+		 <tr th:each = "question : ${questionList}">
+			<td>
+				<a th:href= "@{|/question/detail/${question.id}|}" th:text=" ${question.subject}"></a>
+			</td>
 			<td th:text= "${question.createDate}"></td> 
-			</tr> -->
-			
+		</tr> 
+
+		<!--/* thymeleap에서 링크를 처리 : @{}
 			<tr th:each = "question : ${questionList}">
-			<td>[[${question.subject}]] </td>
-			<td>[[${question.content}]]</td>
+			<td th:href="@{|/question/detail/${question.id}|}">[[${question.subject}]] </td>
 			<td>[[${question.createDate}]]</td> 
-			</tr>
+			</tr>*/-->
 			
 	</table>
 </body>

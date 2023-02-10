@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 정보</title>
+</head>
+<body>
+	<center>
+	ddd
+	<table>
+		<tr th:each = "users : ${usersList} "><td>이름</td><td th:text="${users.name}"></td></tr>
+	
+	</table>
+	
+	</center>
+	
+</body>
+</html>

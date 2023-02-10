@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상세페이지</title>
+</head>
+<body>
+	<H1 th:text="${question.subject}">제목</H1>
+	<div th:text="${question.content}">게시 날짜</div>
+	
+	<h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+	
+	<div>
+		<ul>
+			<li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li> 
+		</ul>
+	</div>
+	<!--  thymleaf에서 링크 : @{} 
+		thymeleaf에서 Model 객체의 변수 값 받기: ${변수명}
+		thymeleaf에서 String + 변수 : |String 변수|	
+	-->
+	<form th:action = "@{|/answer/create/${question.id}|}|" method = "post">
+		<textarea rows="15" id="content" name="content"></textarea>
+		<input type="submit" value="답변등록">
+	 
+	</form>
+</body>
+</html>

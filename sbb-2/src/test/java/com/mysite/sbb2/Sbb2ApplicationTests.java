@@ -15,6 +15,30 @@ class Sbb2ApplicationTests {
 	@Autowired
 	private UsersRepository usersRepository;
 
+	
+	
+//	
+//	@Test
+//	public void insert1000(){
+//
+//	Users u1 = null;
+//
+//	//for문을 사용해서 레코드 1000개 insert
+//
+//	for (int i = 1 ; i <=1000;i++){
+//
+//	u1=new Users();
+//
+//	u1.setName("이름 : "+i);
+//	u1.setPass("pass1");
+//	u1.setEmail(i+"@gmail.com");
+//	u1.setRegdate(LocalDateTime.now());
+//	u1.setCnt(i);
+//	this.usersRepository.save(u1);
+//
+//		}
+//	}
+//	
 //	//삭제
 //	@Test
 //	public void delete() {

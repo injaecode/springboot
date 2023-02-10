@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,17 +18,42 @@ import lombok.RequiredArgsConstructor;
 public class UsersController {
 
 	
-		@Autowired
+		
 		private final UsersRepository usersrepository;
+		private final UsersService usersservice;
 		
 		@GetMapping("/users/list")
 		@PostMapping("/users/list")
 		public String list(Model model) {
 			
-			List<Users> usersList= this.usersrepository.findAll();
+//			List<Users> usersList= this.usersrepository.findAll();
+			List<Users> usersList= this.usersservice.getList();
 			
 			model.addAttribute("usersList", usersList);
 			
 			return "Users_list";
+		}
+		
+		
+		@GetMapping(value="/users_detail/{id}")
+		public String detail(Model model, @PathVariable("id") Integer id) {
+			Users u1= this.usersservice.getUser(id);
+			
+			model.addAttribute("users", u1);
+			
+			return "users_detail";
+		}
+		
+		@GetMapping("/user_insert")
+		public String userInsert() {
+			return "user_insert";
+		}
+		
+		@PostMapping("/insert_data")
+		public String insertData(@RequestParam String name,@RequestParam String pass,@RequestParam String email) {
+			
+			this.usersservice.insertData(name, pass, email);
+			return "redirect:/users/list";
+			
 		}
 }

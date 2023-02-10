@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 정보</title>
+</head>
+<body>
+	<center>
+	<table>
+		<tr>
+			<td>회원번호</td>
+			<td th:text="${users.idx}"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td th:text="${users.name}"></td>
+		</tr>
+		<tr>
+			<td>메일주소</td>
+			<td th:text="${users.email}"></td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td></td>
+		</tr>
+	</table>
+	
+	</center>
+	
+</body>
+</html>
