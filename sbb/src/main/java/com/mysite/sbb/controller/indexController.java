@@ -9,6 +9,6 @@ public class indexController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "redirect:/question/list";
 	}
 }

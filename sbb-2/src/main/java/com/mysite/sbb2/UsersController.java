@@ -1,15 +1,15 @@
 package com.mysite.sbb2;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
@@ -24,12 +24,15 @@ public class UsersController {
 		
 		@GetMapping("/users/list")
 		@PostMapping("/users/list")
-		public String list(Model model) {
+		public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
 			
 //			List<Users> usersList= this.usersrepository.findAll();
-			List<Users> usersList= this.usersservice.getList();
+//			List<Users> usersList= this.usersservice.getList();
 			
-			model.addAttribute("usersList", usersList);
+			 Page<Users> paging = this.usersservice.getList(page);
+		        model.addAttribute("paging", paging);
+			
+//			model.addAttribute("usersList", usersList);
 			
 			return "Users_list";
 		}
@@ -45,14 +48,18 @@ public class UsersController {
 		}
 		
 		@GetMapping("/user_insert")
-		public String userInsert() {
+		public String userInsert(UsersForm usersForm) {
 			return "user_insert";
 		}
 		
 		@PostMapping("/insert_data")
-		public String insertData(@RequestParam String name,@RequestParam String pass,@RequestParam String email) {
-			
-			this.usersservice.insertData(name, pass, email);
+		public String insertData(
+				//@RequestParam String name,@RequestParam String pass,@RequestParam String email
+				@Valid UsersForm usersForm, BindingResult bindingResult) {
+			if(bindingResult.hasErrors()) {
+				return "user_insert";
+			}
+			this.usersservice.insertData(usersForm.getName(), usersForm.getPass(), usersForm.getEmail());
 			return "redirect:/users/list";
 			
 		}

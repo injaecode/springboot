@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>질문 게시판</title>
+
+<link rel="stylesheet" type ="text/css" th:href="@{/bootstrap.min.css}">
+
+</head>
+<body>
+
+	<H1>질문 테이블 리스트 출력하는 view 페이지</H1>
+	<hr>
+	<div class="container my-3">
+	<table class= "table">
+		<thead class="table-dark"> <!-- 제목 처리 -->
+		<tr>
+			<th>번호</th><th>제목</th><th>작성일자</th>
+		</tr>
+		</thead>
+		<tbody>		<!-- 테이블 내용 처리 -->
+				<!-- 타임리프(Thymeleaf)로 루프를 돌려서 출력 -->
+		 <tr th:each = "question, loop : ${questionList}">
+			<td th:text= "${loop.count}"></td>
+			<td>
+				<a th:href= "@{|/question/detail/${question.id}|}" th:text=" ${question.subject}"></a>
+			</td>
+			<td th:text= "${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td> 
+		</tr> 
+
+		<!--/* thymeleap에서 링크를 처리 : @{}
+			<tr th:each = "question : ${questionList}">
+			<td th:href="@{|/question/detail/${question.id}|}">[[${question.subject}]] </td>
+			<td>[[${question.createDate}]]</td> 
+			</tr>*/-->
+		</tbody>	
+	</table>
+	</div>
+
+</body>
+</html>

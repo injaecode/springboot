@@ -3,13 +3,19 @@ package com.mysite.sbb.Question;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysite.sbb.Answer.AnswerForm;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
@@ -40,31 +46,68 @@ public class QuestionController {
 	private final QuestionService questionService;
 	
 	
-	@GetMapping("/question/list") 	//localhost:9090/question/list
-	@PostMapping("/question/list") //폼에서 method=post action="/question/list"로 전달
-//	@ResponseBody					//요청을 브라우저에 출력
-	public String list(Model model) {
-		//1. 클라이언트 요청정보 : localhost:9090/question/list
-		//2. 비즈니스 로직을 처리 
-		List<Question> questionList=
-				//this.questionrepository.findAll();
-				this.questionService.getList();
-		//3. 뷰 페이지로 전송
-			//Model : 뷰페이지로 서버의 데이터를 담아서 전송 객체(session, application)
-		model.addAttribute("questionList", questionList);
+//	@GetMapping("/question/list") 	//localhost:9090/question/list
+//	@PostMapping("/question/list") //폼에서 method=post action="/question/list"로 전달
+////	@ResponseBody					//요청을 브라우저에 출력
+//	public String list(Model model) {
+//		//1. 클라이언트 요청정보 : localhost:9090/question/list
+//		//2. 비즈니스 로직을 처리 
+//		List<Question> questionList=
+//				//this.questionrepository.findAll();
+//				this.questionService.getList();
+//		//3. 뷰 페이지로 전송
+//			//Model : 뷰페이지로 서버의 데이터를 담아서 전송하는 객체(session, application)
+//		model.addAttribute("questionList", questionList);
+//		
+//		return "Question_list";
+//		
+//	}
+//	
+	//02.14 수정, 페이징 처리를 위해 작성
+	//localhost:9090/question/list/?page=0
+	@GetMapping("/question/list")
+	public String list(Model model, @RequestParam (value="page", defaultValue = "0") int page) {
+		//비즈니스 로직처리
+		Page<Question> paging=
+		this.questionService.getList(page);
+		
+		//model 객체에 결과로 받은 paging 객체를 담아 client에 전송
+		model.addAttribute("paging",paging);
 		
 		return "Question_list";
-		
 	}
 	
 	//상세페이지를 처리하는 메소드 : /question/detail/1
 	@GetMapping(value="/question/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id) {
+	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
 		//서비스 클래스의 메소드 호출 :  '상세페이지 출력'
 		Question q=
 				this.questionService.getQuestion(id);
 				// Model 객체에 담아서 클라이언트에게 전송
 				model.addAttribute("question", q);
 		return "Question_detail"; //template 내 question_detail.html 파일로 이동
+	}
+	
+	@GetMapping("/question/create")
+	public String questionCreate(QuestionForm questionForm) {
+		return "question_form"; 
+	}
+	
+	@PostMapping("/question/create")
+	public String questionCreate(
+			//@RequestParam String subject, @RequestParam String content
+			@Valid QuestionForm questionForm, BindingResult bindingResult
+			) {
+			if(bindingResult.hasErrors()) {
+				return "question_form";
+			}
+		//로직 작성 부분(service에서 로직을 만들어서 작동)
+		this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+		//값을 db에 저장 후 List페이지로 리다이렉트 
+			
+		return "redirect:/question/list";
+		
+		
+		
 	}
 }

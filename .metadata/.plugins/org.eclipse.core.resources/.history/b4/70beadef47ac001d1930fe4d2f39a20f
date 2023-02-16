@@ -1,0 +1,29 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+	<center>
+		<h5 class="my-3 border-bottom pb-2">회원 등록</h5>
+
+
+		<form th:action="@{/insert_data}" method="post">
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="floatingInput"
+					placeholder="Name" name="name"> 
+					<label for="floatingInput">Name</label>
+			</div>
+			<br>
+			<div class="form-floating">
+				<input type="password" class="form-control" id="floatingPassword"
+					placeholder="Password"> <label for="floatingPassword" name="pass">Password</label>
+			</div>
+			<br>
+			<div class="form-floating mb-3">
+				<input type="email" class="form-control" id="floatingInput"
+					placeholder="name@example.com" name="email"> 
+					<label for="floatingInput">Email address</label>
+			</div>
+			<input type="submit" value="등록" class="btn btn-primary my-2">
+
+		</form>
+	</center>
+</div>
+</html>

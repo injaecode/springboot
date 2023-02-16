@@ -1,0 +1,57 @@
+package com.mysite.sbb2;
+
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
+@Controller
+public class UsersController {
+
+	
+		
+		private final UsersRepository usersrepository;
+		private final UsersService usersService;
+		
+		@GetMapping("/users/list")
+		@PostMapping("/users/list")
+		public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+			
+//			List<Users> usersList= this.usersrepository.findAll();
+			Page<Users> paging= this.usersService.getList(page);
+			
+			model.addAttribute("paging", paging);
+			
+			return "Users_list";
+		}
+		
+		
+		@GetMapping(value="/users_detail/{id}")
+		public String detail(Model model, @PathVariable("id") Integer id) {
+			Users u1= this.usersService.getUser(id);
+			
+			model.addAttribute("users", u1);
+			
+			return "users_detail";
+		}
+		
+		@GetMapping("/user_insert")
+		public String userInsert() {
+			return "user_insert";
+		}
+		
+		@PostMapping("/insert_data")
+		public String insertData(@RequestParam String name,@RequestParam String pass,@RequestParam String email) {
+			
+			this.usersservice.insertData(name, pass, email);
+			return "redirect:/users/list";
+			
+		}
+}

@@ -1,0 +1,6 @@
+
+<html layout:decorate="~{layout}">
+
+	<h1>question_form.html</h1>
+
+</html>

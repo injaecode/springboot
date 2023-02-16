@@ -1,0 +1,46 @@
+<html layout:decorate="~{layout}">
+	<div layout:fragment="content" class="container my-3">
+		<h3>회원 리스트 </h3>
+
+		<hr>
+		<table  class= "table">
+			
+			<thead class="table-warning">
+				<tr align="center">
+					<th>번호</th><th>이름</th><th>이메일</th><th>등록일자</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+			<tr th:each = "users, loop : ${paging} "> 
+			  	<td width=50  th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+				<td width=150 align="center"><a th:href= "@{|/users_detail/${users.idx}|}" th:text=" ${users.name}"></a></td>
+				<td width=150 align="center">[[${users.email}]]</td>
+				<td width=150 th:text= "${#temporals.format(users.regdate, 'yyyy-MM-dd HH:mm')}"></td> 
+			</tr>
+			</tbody>
+		</table>
+		 <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link"
+                    th:href="@{|?page=${paging.number-1}|}">
+                    <span>이전</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                th:classappend="${page == paging.number} ? 'active'" 
+                 th:if="${page >= paging.number-3 and page <= paging.number+3}"
+                class="page-item">
+                <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
+	</div>
+</html>

@@ -1,0 +1,24 @@
+<html layout:decorate="~{layout}">
+	<div layout:fragment="content" class="container my-3">
+	<h2 class="border-bottom py-2" th:text="${users.name}></h2>
+	<table>
+		<tr>
+			<td>회원번호</td>
+			<td th:text="${users.idx}"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td th:text="${users.name}"></td>
+		</tr>
+		<tr>
+			<td>메일주소</td>
+			<td th:text="${users.email}"></td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td th:text="${users.regdate}"></td>
+		</tr>
+	</table>
+	
+	<div layout:fragment="content" class="container my-3">
+</html>

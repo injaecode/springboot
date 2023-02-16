@@ -1,0 +1,8 @@
+package com.mysite.sbb.Question;
+
+public class QuestionForm {
+
+		private String subject;
+		private String Content;
+		
+}

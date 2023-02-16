@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원 등록</title>
-</head>
-<body>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
 	<center>
-	<h3>회원 등록</h3>
+		<h5 class="my-3 border-bottom pb-2">회원 등록</h5>
 
-	
-	<form th:action = "@{/insert_data}" method = "post">
-	<table>
-		<tr>
-			<td>이름</td>
-			<td><input type="text" name="name"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type="password" name="pass"></td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td><input type="text" name="email"></td>
-		</tr>
 
-	</table>
-	<input type="submit" value="회원등록">
- 
-	</form>
+		<form th:action="@{/insert_data}" th:object="${usersForm}" method="post">
+		
+			<div th:replace="~{form_errors::formErrorsFragment}"></div>
+		
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="floatingInput"
+					placeholder="Name" th:field="*{name}" > 
+					<label for="floatingInput">Name</label>
+			</div>
+
+			<div class="form-floating mb-3">
+				<input type="password" class="form-control" id="floatingPassword"
+					placeholder="Password"  th:field="*{pass}" > <label for="floatingPassword">Password</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="email" class="form-control" id="floatingInput"
+					placeholder="name@example.com" th:field="*{email}" > 
+					<label for="floatingInput">Email address</label>
+			</div>
+			<input type="submit" value="등록" class="btn btn-primary my-2">
+
+		</form>
 	</center>
-</body>
+</div>
 </html>

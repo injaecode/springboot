@@ -1,9 +1,0 @@
-#각종 설정을 세팅하는 파일
-#JDBC 세팅, MyBatis Mapper
-# <- 주석 
-#netstat -na |more 사용중인 포트 확인
-
-
-#기본 포트 : 8080
-
-server.port=9292
